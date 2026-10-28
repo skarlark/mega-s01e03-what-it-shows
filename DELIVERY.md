@@ -4,7 +4,7 @@ Two problem tickets: #1 for the parser defect (379 unique reports), #2 for the i
 
 The source classifier and original data are preserved. Five unusual timing descriptions remain included and footnoted in the parser ticket; no third root cause is asserted. The earlier third ticket was deleted with explicit human approval after its evidence was preserved.
 
-The student requested a trial single-ticket grouping. The course rejected it with “That's one ticket for two problems. The desk keeps one per problem.” The current revision restores two explicit problem tickets. The course accepted these two problem tickets. Its subsequently revealed engineering update says #4471 closed on 5 October: parser fixed; hint won’t fix because booking-v3 was retired. Ticket #1 is completed, ticket #2 is not planned. Final page acceptance remains pending.
+The student requested a trial single-ticket grouping. The course rejected it with “That's one ticket for two problems. The desk keeps one per problem.” The current revision restores two explicit problem tickets. The course accepted these two problem tickets. Its subsequently revealed engineering update says #4471 closed on 5 October: parser fixed; hint won’t fix because booking-v3 was retired. Ticket #1 is completed, ticket #2 is not planned. The course accepted the final signed page and marked S01E03 solved on 28 October 2026.
 
 ## Deliverables
 
@@ -27,4 +27,6 @@ npm run dev
 
 Preview `/kb/decisions/0002-dedupe-by-evidence`, or open the standalone rendered HTML. The page uses the course-issued ticket as its frontmatter signature; RenderStamp derives its desk reference at render time. The original accepted decision and classifier code are preserved.
 
-Course acceptance is pending. Repository: https://github.com/skarlark/mega-s01e03-what-it-shows
+The course accepted the tickets and signed page. S01E03 is solved. Repository: https://github.com/skarlark/mega-s01e03-what-it-shows
+
+Debrief: https://hq.mega.dev/challenges/what-it-shows#debrief
