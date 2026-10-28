@@ -1,10 +1,10 @@
 # Shared month-first parser swaps dates for day-first tenants — 379 reports
 
 ## Problem
-The shared parser reads numeric dates month first although affected tenants write day first. This affects app/email paths and booking-v2 forms. The booking-v3 form hint is a separate problem.
+The shared parser reads numeric dates month first although affected tenants write day first. This affects app/email paths and booking-v2 forms. Booking-v3 form submissions are tracked in #2.
 
 ## Coverage
-379 unique reports from #4471, across 11 tenants, 2026-04-01 to 2026-10-04. Export dated 2026-10-04. Count IDs once, not export rows. Browser locale, intake tags and subject are not reliable cause labels. The five desk-noted timing anomalies remain in the parser count; their reported symptoms must be investigated without assuming a separate root cause.
+379 unique reports from #4471, across 11 tenants, 2026-04-01 to 2026-10-04. Export dated 2026-10-04. Count IDs once, not export rows. Browser locale, intake tags and subject are not reliable cause labels. Five desk-noted unusual reports remain in this count; their descriptions are preserved below for investigation.
 
 ## Reproduction and expected behavior
 For harbour.dental (en-GB, booking-v2), enter 07/04/2026 through the app. Expected: 7 April 2026. Observed in R-41200: 4 July 2026. Verify app, email and booking-v2 paths across the tenant locales. Do not infer the locale from the reporter browser.
@@ -13,7 +13,7 @@ For harbour.dental (en-GB, booking-v2), enter 07/04/2026 through the app. Expect
 Parse against the tenant input contract, or use unambiguous structured dates. Verify intended day/month is preserved in generated invites and reminders. Track the queued fix and validate deployment; the export does not prove it shipped.
 
 ## Source evidence
-`src/lib/kb/causes.ts`, `src/lib/kb/locales.ts`, tenant files, and `src/lib/data/reports-4471.json`. The source classifier assigns 379 parser reports including five read as one-day moves or timing anomalies; the hint group has 33.
+`src/lib/kb/causes.ts`, `src/lib/kb/locales.ts`, tenant files, and `src/lib/data/reports-4471.json`.
 
 - R-41200 (harbour.dental, app): Our 7 April reminder went out on 4 July. Is this a joke. It is not April Fools where we are.
 - R-41201 (harbour.dental, app): Sorry. 4 July went out on 7 April. I have been up since five.
