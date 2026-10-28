@@ -25,6 +25,6 @@ npm run render
 npm run dev
 ```
 
-Preview `/kb/decisions/0002-dedupe-by-evidence`, or open the standalone rendered HTML. The signature is `skarlark / Codex / S01E03 / 2026-10-28`; RenderStamp computes `DR-02AR-ZGBD`. The original accepted decision and classifier code are preserved.
+Preview `/kb/decisions/0002-dedupe-by-evidence`, or open the standalone rendered HTML. The page uses the course-issued ticket as its frontmatter signature; RenderStamp derives its desk reference at render time. The original accepted decision and classifier code are preserved.
 
 Course acceptance is pending. Repository: https://github.com/skarlark/mega-s01e03-what-it-shows

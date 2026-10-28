@@ -4,7 +4,7 @@ title: '0002 · Separate the parser defect from the incorrect form hint'
 owner: skarlark
 status: proposed
 reviewed: 2026-10-28
-signature: 'skarlark / Codex / S01E03 / 2026-10-28'
+signature: 'v1.eyJzdWIiOiI0ODA0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMjU3NjgsImV4cCI6MTc5MzMxMjE2OH0.k85podMj45m3aaAddnvx5w3Pg5I1hbLydgT79uFZMh4'
 ---
 
 <script>
