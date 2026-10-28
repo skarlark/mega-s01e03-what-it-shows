@@ -35,4 +35,4 @@ These reports remain in the 379 count, classified by tenant. Preserve and invest
 - R-41344: Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice.
 - R-41620: Tuesday 6 October showed as Monday. I moved it myself. I have stopped reporting these but my colleague says it helps you.
 
-Issue #3 was initially opened for these symptoms and is closed as a duplicate of this issue after the course rejected the extra split.
+Issue #3 was initially opened for these symptoms, then closed and permanently deleted with human approval. Its evidence is preserved above.
