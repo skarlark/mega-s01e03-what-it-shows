@@ -16,7 +16,7 @@ signature: 'skarlark / Codex / S01E03 / 2026-10-28'
 
 ## Decision and scope
 
-Replace subject-only triage in [decision 0001](/kb/decisions/0001-dedupe-by-subject) with an evidence-based rule. This is a proposed replacement; the accepted record remains intact. The support desk must adopt it before it changes practice. The [incident page](/kb/incidents/4471) says one bug and one fix, but its rendered table disagrees with that prose, and its classifier still hides anomalous reports.
+Replace subject-only triage in [decision 0001](/kb/decisions/0001-dedupe-by-subject) with an evidence-based rule. This is a proposed replacement; the accepted record remains intact. The support desk must adopt it before it changes practice. The [incident page](/kb/incidents/4471) says one bug and one fix, but its rendered table disagrees with that prose, and five reports require a careful reading of their symptoms.
 
 The desk supports several products. These findings concern calendar invites in `sched-prod`. They do not establish the same faults in other products. Counts below describe the export through 4 October, not today's live queue.
 
@@ -26,7 +26,7 @@ The desk supports several products. These findings concern calendar invites in `
 
 The shared parser reads month first even for day-first tenants. Booking-v3 has a different fault: the hint asks for month-first input but the form interprets it using the tenant's day-first order. Fixing the shared parser alone will not fix that hint.
 
-Five reports explicitly noted by the desk describe a one-day move or another timing anomaly. Tenant-based classification assigns them to parser, but their bodies do not establish a day/month reversal. Keep them together for investigation, without claiming they share a proven root cause or asserting a timezone fix. One report says the invite arrived before booking; inspect creation and delivery timestamps as well as timezone conversion. They are excluded from the parser ticket count to avoid double counting.
+Five reports explicitly noted by the desk were read as one-day moves or timing anomalies. They are counted under parser by tenant, with their reported behavior preserved as notes on that ticket. Do not create another problem solely from a different symptom, or assert a timezone fix without reproducing it. One report says the invite arrived before booking; inspect creation and delivery timestamps as well as timezone conversion while investigating the parser ticket.
 
 ## Why the queue looked like one incident
 
@@ -51,7 +51,7 @@ The explorer shows same-subject reports that have different causes and different
 
 ## Handoff and verification
 
-The public repository contains one issue for each of the three groups, with report IDs, counts and evidence. For parser, reproduce a day-first date through app/email or booking-v2; preserve the intended day and month in the invite. For hint, reproduce on a day-first booking-v3 form, align the hint with input parsing, and check app/email independently. For timing anomalies, collect the original invite, stored timestamps, event timezone, recipient timezone, booking creation time and delivery time before choosing a fix.
+The public repository contains one open issue for each of the two problems, with report IDs, counts and evidence. For parser, reproduce a day-first date through app/email or booking-v2; preserve the intended day and month in the invite. For hint, reproduce on a day-first booking-v3 form, align the hint with input parsing, and check app/email independently. For the unusual reports within the parser ticket, collect the original invite, stored timestamps, event timezone, recipient timezone, booking creation time and delivery time before choosing a fix.
 
 The new rule must be adopted by the desk, and current queue counts must be checked separately. This export does not show whether a queued fix shipped. Update the incident and triage guidance after adoption; leave accepted decision 0001 as history and link its replacement.
 

@@ -4,7 +4,7 @@
 On day-first tenants, booking-v3 prints MM/DD/YYYY but interprets the input using tenant order. People following the hint get swapped dates. This is independent of the shared parser fix.
 
 ## Coverage
-33 unique reports from #4471, across 3 tenants, 2026-04-17 to 2026-09-22. Export dated 2026-10-04. Count IDs once, not export rows. Browser locale, intake tags and subject are not reliable cause labels. The five desk-noted timing anomalies are excluded from parser coverage and filed separately.
+33 unique reports from #4471, across 3 tenants, 2026-04-17 to 2026-09-22. Export dated 2026-10-04. Count IDs once, not export rows. Browser locale, intake tags and subject are not reliable cause labels. The five desk-noted timing anomalies remain in the parser count; their reported symptoms must be investigated without assuming a separate root cause.
 
 ## Reproduction and expected behavior
 Use the form channel on alder.physio (de-DE, booking-v3), copper.studio (es-ES, booking-v3) or pale.harbour (pt-PT, booking-v3). Follow MM/DD/YYYY to enter April 7 as 04/07/2026. Expected: 7 April. Tenant day-first interpretation yields 4 July. Check the report evidence below and verify actual UI before releasing a fix.
@@ -13,7 +13,7 @@ Use the form channel on alder.physio (de-DE, booking-v3), copper.studio (es-ES, 
 Align hint, validation and parsing with the same tenant date contract. Validate booking-v3 for all three affected locales and confirm app/email behavior separately.
 
 ## Source evidence
-`src/lib/kb/causes.ts`, `src/lib/kb/locales.ts`, tenant files, and `src/lib/data/reports-4471.json`. The source classifier assigns 379 parser reports including five anomalous bodies; our parser ticket accounts for 374.
+`src/lib/kb/causes.ts`, `src/lib/kb/locales.ts`, tenant files, and `src/lib/data/reports-4471.json`. The source classifier assigns 379 parser reports including five read as one-day moves or timing anomalies; the hint group has 33.
 
 - R-41230 (copper.studio, form): My client came on 1 June instead of 6 January. We sorted it out.
 - R-41241 (alder.physio, form): We had two people show up on 8 June. They were booked for 6 August.
