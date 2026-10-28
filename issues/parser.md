@@ -33,3 +33,6 @@ R-41200, R-41201, R-41202, R-41203, R-41204, R-41205, R-41206, R-41208, R-41209,
 Original report export, tenant directory, and src/lib/kb/causes.ts. Tenant locale and actual input path take precedence over intake tags and browser locale.
 
 [Signed knowledge base page](https://github.com/skarlark/mega-s01e03-what-it-shows/blob/main/src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx) · [Rendered page](https://github.com/skarlark/mega-s01e03-what-it-shows/blob/main/rendered/0002-dedupe-by-evidence.html).
+
+## Engineering disposition — 5 October
+Engineering update on the course page: #4471 closed 5 October; parser FIXED, fix(dates): parse dd/mm for eu locales. Closed as completed based on that desk update. Source: https://hq.mega.dev/challenges/what-it-shows#engineering-update (checked 28 October).

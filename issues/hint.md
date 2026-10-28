@@ -24,3 +24,6 @@ R-41230, R-41241, R-41251, R-41259, R-41262, R-41275, R-41294, R-41305, R-41308,
 Original report export, tenant directory, and src/lib/kb/causes.ts. Tenant locale and actual input path take precedence over intake tags and browser locale.
 
 [Signed knowledge base page](https://github.com/skarlark/mega-s01e03-what-it-shows/blob/main/src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx) · [Rendered page](https://github.com/skarlark/mega-s01e03-what-it-shows/blob/main/rendered/0002-dedupe-by-evidence.html).
+
+## Engineering disposition — 5 October
+Engineering update on the course page: #4471 closed 5 October; hint WON’T FIX because booking-v3 form was retired. Closed as not planned; this does not claim the hint was corrected. Source: https://hq.mega.dev/challenges/what-it-shows#engineering-update (checked 28 October).

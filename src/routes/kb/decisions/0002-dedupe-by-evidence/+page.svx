@@ -16,11 +16,16 @@ signature: 'skarlark / Codex / S01E03 / 2026-10-28'
 
 ## Decision and scope
 
-Track two problems within [#4471](/kb/incidents/4471): a shared date parser defect and an incorrect booking-v3 date-field hint. The same visible day/month swap can arise from different input contracts, and each problem needs its own ticket and fix. A trial grouping into one ticket was rejected by the course because it combined two problems. Course acceptance of this revision and support-desk adoption remain pending.
+Track two problems within [#4471](/kb/incidents/4471): a shared date parser defect and an incorrect booking-v3 date-field hint. The course accepted these two tickets. A trial grouping into one ticket was rejected because it combined two problems. The same visible day/month swap can arise from different input contracts.
 
-The original incident page says one bug and one queued fix. The source classifier and rendered table distinguish two causes; neither a shared symptom nor a queued fix proves both are resolved.
+## Engineering update — 5 October
 
-These findings concern calendar invites in `sched-prod`, from the export through 4 October. They establish neither faults in the desk's other products nor current live queue counts.
+The [course desk update](https://hq.mega.dev/challenges/what-it-shows#engineering-update), checked on 28 October after ticket acceptance, reports that #4471 closed on 5 October:
+
+- **Parser: fixed.** Engineering change: `fix(dates): parse dd/mm for eu locales`. Public ticket #1 is closed as completed.
+- **Hint: won't fix.** The booking-v3 form was retired. Public ticket #2 is closed as not planned; retirement is not a hint correction.
+
+This update supersedes the export's known/queued state. It reports engineering's disposition; we did not independently run the production system. The report counts below remain the historical export through 4 October, not new live queue counts. These findings concern `sched-prod`, not the desk's other products.
 
 ## Problem tickets and report coverage
 
@@ -57,6 +62,6 @@ The explorer compares the source classifier's causes. It shows that equal subjec
 
 [Parser ticket #1](https://github.com/skarlark/mega-s01e03-what-it-shows/issues/1) and [form-hint ticket #2](https://github.com/skarlark/mega-s01e03-what-it-shows/issues/2) each contain their report IDs and independent acceptance criteria. The earlier timing ticket was deleted with the student's approval after its evidence was preserved.
 
-Validate tenant date order on app/email and booking-v2 paths. Validate the booking-v3 hint, validation and interpretation together on all three affected tenants. Check the generated invite's intended day and month in each case. For unusual timing reports, collect original invites, event and recipient timezones, stored timestamps and creation/delivery logs. Confirm deployment and reproduction results before declaring resolution; the export contains no such confirmation.
+Validate tenant date order on app/email and booking-v2 paths. Validate the booking-v3 hint, validation and interpretation together on all three affected tenants. Check the generated invite's intended day and month in each case. For unusual timing reports, collect original invites, event and recipient timezones, stored timestamps and creation/delivery logs. Engineering reports the dispositions above. For independent validation, check deployment and reproduction evidence; the historical export alone contains no such confirmation.
 
 <RenderStamp {signature} />

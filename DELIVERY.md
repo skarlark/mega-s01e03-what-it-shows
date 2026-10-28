@@ -4,7 +4,7 @@ Two problem tickets: #1 for the parser defect (379 unique reports), #2 for the i
 
 The source classifier and original data are preserved. Five unusual timing descriptions remain included and footnoted in the parser ticket; no third root cause is asserted. The earlier third ticket was deleted with explicit human approval after its evidence was preserved.
 
-The student requested a trial single-ticket grouping. The course rejected it with “That's one ticket for two problems. The desk keeps one per problem.” The current revision restores two explicit problem tickets. Course acceptance remains pending.
+The student requested a trial single-ticket grouping. The course rejected it with “That's one ticket for two problems. The desk keeps one per problem.” The current revision restores two explicit problem tickets. The course accepted these two problem tickets. Its subsequently revealed engineering update says #4471 closed on 5 October: parser fixed; hint won’t fix because booking-v3 was retired. Ticket #1 is completed, ticket #2 is not planned. Final page acceptance remains pending.
 
 ## Deliverables
 
