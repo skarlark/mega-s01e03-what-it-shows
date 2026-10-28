@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '0002 · Split #4471 by evidence, then deduplicate by cause'
+title: '0002 · One date-order incident with two corrective tasks'
 owner: skarlark
 status: proposed
 reviewed: 2026-10-28
@@ -16,43 +16,47 @@ signature: 'skarlark / Codex / S01E03 / 2026-10-28'
 
 ## Decision and scope
 
-Replace subject-only triage in [decision 0001](/kb/decisions/0001-dedupe-by-subject) with an evidence-based rule. This is a proposed replacement; the accepted record remains intact. The support desk must adopt it before it changes practice. The [incident page](/kb/incidents/4471) says one bug and one fix, but its rendered table disagrees with that prose, and five reports require a careful reading of their symptoms.
+Track the reports in [#4471](/kb/incidents/4471) as one date-order incident, with separate corrective tasks for shared input handling and the booking-v3 hint. The student requested this incident boundary after the course repeatedly said our separate tickets described the same problem. It is a proposed grouping; course acceptance and support-desk adoption are still pending.
 
-The desk supports several products. These findings concern calendar invites in `sched-prod`. They do not establish the same faults in other products. Counts below describe the export through 4 October, not today's live queue.
+The source code explicitly classifies parser and hint as different bugs. We preserve that distinction as implementation tasks and require independent verification of each path. One incident does not imply one code change or a proven common internal defect. The incident page's claim that one queued fix resolves everything still requires validation.
 
-## Split #4471
+These findings concern calendar invites in `sched-prod`, from the export through 4 October. They establish neither faults in the desk's other products nor current live queue counts.
+
+## Incident coverage and corrective tasks
 
 <IncidentReview />
 
-The shared parser reads month first even for day-first tenants. Booking-v3 has a different fault: the hint asks for month-first input but the form interprets it using the tenant's day-first order. Fixing the shared parser alone will not fix that hint.
+For the shared input path, the tenant enters a day-first date and month-first interpretation swaps it. For booking-v3, the month-first hint prompts input that the form interprets in tenant day-first order. Both can turn an intended 7 April into 4 July; both contracts must be made consistent.
 
-Five reports explicitly noted by the desk were read as one-day moves or timing anomalies. They are counted under parser by tenant, with their reported behavior preserved as notes on that ticket. Do not create another problem solely from a different symptom, or assert a timezone fix without reproducing it. One report says the invite arrived before booking; inspect creation and delivery timestamps as well as timezone conversion while investigating the parser ticket.
+The desk noted five unusual descriptions, including one-day moves and an invite arriving before booking. Preserve them in the incident and investigate their original timestamps and invite data. Do not infer a separate root cause or prescribe a timezone fix from wording alone.
 
-## Why the queue looked like one incident
+## Queue history
 
 <QueueTimeline ticket={4471} />
 
-Reports began in April, while merging into the umbrella ticket began in July. The July merge spike reflects accumulated reports being filed, not necessarily a sudden increase in failures. The desk continued merging afterwards. A count of merged reports is not an incidence rate, and neither a queued fix nor a known label proves resolution.
+Reports began in April; merging into the umbrella ticket began in July. The merge spike reflects accumulated reports being filed, not necessarily a new spike in failures. Merging continued afterwards. A known label or queued fix does not establish resolution.
 
-## Triage rule from now on
+## Proposed replacement for subject-only triage
 
-1. Read the body and establish the product, intended date, observed date, tenant, tenant locale, booking form and channel.
-2. Treat browser locale and intake tags as clues. Check the tenant directory and actual path; the browser may disagree with the tenant.
-3. Merge only when evidence supports the same failure mechanism. Matching subjects are insufficient; different subjects can describe the same fault.
-4. Keep anomalous or unknown reports separate for investigation. Ask for missing facts rather than merging by default.
-5. Deduplicate export rows by report ID. Record a report's destination and preserve its history when splitting tickets.
-6. Review incoming reports against these causes, update counts and links, and confirm fixes against each affected path before closing either ticket. Re-read stale guidance before relying on it.
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) remains unchanged as accepted history. This record proposes its replacement; the desk must adopt the rule before practice changes.
 
-## Compare the current rule with the code
+1. Read each body and establish the product, intended date, observed date, tenant locale, booking form and channel.
+2. Check tenant settings. Browser locale and intake tags are clues, not reliable cause labels.
+3. Use evidence to choose the incident boundary. Matching subjects alone are insufficient. Retain distinct implementation paths and fixes as explicit tasks within a shared incident when grouping them.
+4. Preserve unusual symptoms and missing facts for investigation. Do not manufacture a new root cause from a different description.
+5. Deduplicate exports by report ID. Each report counts once, even if its ticket or task assignment changes.
+6. Review new reports, update counts and links, and verify every affected path before closing the incident. Re-read stale guidance against current evidence.
+
+## What the existing explorer establishes
 
 <DedupeExplorer />
 
-The explorer shows same-subject reports that have different causes and different-subject reports that share a cause. Its unknown-tenant case does not justify merging. It also shares the classifier's limitation: the body anomalies require reading beyond its result.
+The explorer compares the source classifier's implementation causes. It shows that equal subjects can conceal different paths and different subjects can share a path. That is evidence for investigation, not an automatic decision about how many incident tickets to file. An unknown tenant requires more information.
 
 ## Handoff and verification
 
-The public repository contains one open issue for each of the two problems, with report IDs, counts and evidence. For parser, reproduce a day-first date through app/email or booking-v2; preserve the intended day and month in the invite. For hint, reproduce on a day-first booking-v3 form, align the hint with input parsing, and check app/email independently. For the unusual reports within the parser ticket, collect the original invite, stored timestamps, event timezone, recipient timezone, booking creation time and delivery time before choosing a fix.
+[Public incident #1](https://github.com/skarlark/mega-s01e03-what-it-shows/issues/1) contains all report IDs and both corrective tasks. Ticket #2 is closed as merged; it adds no reports. The earlier timing ticket was deleted with the student's approval after its evidence was preserved.
 
-The new rule must be adopted by the desk, and current queue counts must be checked separately. This export does not show whether a queued fix shipped. Update the incident and triage guidance after adoption; leave accepted decision 0001 as history and link its replacement.
+Validate tenant date order on app/email and booking-v2 paths. Validate the booking-v3 hint, validation and interpretation together on all three affected tenants. Check the generated invite's intended day and month in each case. For unusual timing reports, collect original invites, event and recipient timezones, stored timestamps and creation/delivery logs. Confirm deployment and reproduction results before declaring resolution; the export contains no such confirmation.
 
 <RenderStamp {signature} />
