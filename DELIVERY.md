@@ -1,15 +1,17 @@
 # S01E03 — what it shows
 
-Current proposal: one date-order incident, issue #1, covering 412 unique reports, with two implementation tasks. Issue #2 is closed as merged. Issue #3 was permanently deleted with explicit human approval; its evidence is preserved in #1.
+Two problem tickets: #1 for the parser defect (379 unique reports), #2 for the incorrect booking-v3 form hint (33). Together they cover all 412 reports once, from 427 overlapping export rows.
+
+The source classifier and original data are preserved. Five unusual timing descriptions remain included and footnoted in the parser ticket; no third root cause is asserted. The earlier third ticket was deleted with explicit human approval after its evidence was preserved.
+
+The student requested a trial single-ticket grouping. The course rejected it with “That's one ticket for two problems. The desk keeps one per problem.” The current revision restores two explicit problem tickets. Course acceptance remains pending.
 
 ## Deliverables
 
-- `issues/date-order.md`: the complete incident body, report IDs and corrective tasks.
-- `src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx`: signed proposed incident grouping and triage guidance.
-- `rendered/0002-dedupe-by-evidence.html`: actual Svelte-rendered standalone desk page.
-- `analysis.json`: original classifier results, unchanged: 379 parser and 33 hint reports.
-
-427 export rows become 412 unique report IDs. The student requested one incident after the course repeatedly said two tickets described the same problem. Source code calls parser and hint different bugs; we retain them as separately verified corrective tasks within the incident. Five unusual timing descriptions are preserved, without asserting a third root cause. Counts are the export snapshot through 2026-10-04, not the live queue. No fix or support-desk adoption is claimed.
+- `issues/parser.md` and `issues/hint.md`: current issue bodies and report IDs.
+- `src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx`: signed proposed decision.
+- `rendered/0002-dedupe-by-evidence.html`: Svelte-rendered standalone desk page.
+- `analysis.json`: source-classifier results.
 
 ## Reproduce locally
 

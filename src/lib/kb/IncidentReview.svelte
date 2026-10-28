@@ -9,15 +9,15 @@
  const classified=groupByCause(reports,tenantOf);
  const groups=classified;
  const mislabeled=classified.reduce((n,g)=>n+g.reports.filter(r=>r.meta.intakeTag!==g.cause).length,0);
- const incidentUrl='https://github.com/skarlark/mega-s01e03-what-it-shows/issues/1';
+ const links={parser:'https://github.com/skarlark/mega-s01e03-what-it-shows/issues/1',hint:'https://github.com/skarlark/mega-s01e03-what-it-shows/issues/2'};
 </script>
 <p>{raw.length} exported rows become <strong>{reports.length} distinct reports</strong> after removing {raw.length-reports.length} duplicate rows by ID.</p>
-<p><a href={incidentUrl}>One date-order incident</a> covers all {reports.length} reports. The implementation paths below are corrective tasks within it.</p>
+<p>Two problem tickets cover all {reports.length} reports once. Each needs its own corrective work and verification.</p>
 <table>
- <thead><tr><th>Corrective task / source classification</th><th>Reports</th><th>Evidence and affected path</th></tr></thead>
+ <thead><tr><th>Problem / public ticket</th><th>Reports</th><th>Evidence and affected path</th></tr></thead>
  <tbody>
  {#each groups as g}
- <tr><td><a href={incidentUrl}>{g.cause === 'parser' ? 'Month-first shared parser' : 'Misleading booking-v3 date hint'}</a></td><td>{g.reports.length}</td><td>{g.tenants} day-first tenants; {g.firstSeen} to {g.lastSeen}. {g.cause === 'parser' ? 'App/email and booking-v2 form paths.' : 'Form channel on booking-v3 at alder.physio, copper.studio and pale.harbour.'}</td></tr>
+ <tr><td><a href={links[g.cause]}>{g.cause === 'parser' ? 'Month-first shared parser' : 'Misleading booking-v3 date hint'}</a></td><td>{g.reports.length}</td><td>{g.tenants} day-first tenants; {g.firstSeen} to {g.lastSeen}. {g.cause === 'parser' ? 'App/email and booking-v2 form paths.' : 'Form channel on booking-v3 at alder.physio, copper.studio and pale.harbour.'}</td></tr>
  {/each}
  </tbody>
 </table>
